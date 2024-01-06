@@ -2,6 +2,24 @@ import { prisma } from "../src/db";
 // @ts-ignore
 import {BurritoSize} from "@prisma/client";
 
+const bcrypt = require('bcrypt');
+
+const seedUser = async () => {
+  try {
+    const adminUser = {
+      username: 'admin',
+      password: await bcrypt.hash('admin', 10)
+    };
+
+    // Insert burritos into the database
+    await prisma.user.create({ data: adminUser });
+
+    console.log('User seeded successfully.');
+  } catch (error) {
+    console.error('Error seeding user:', error);
+  }
+};
+
 const seedBurritos = async () => {
   try {
     const burritosData = [
@@ -37,8 +55,6 @@ const seedBurritos = async () => {
     console.log('Burritos seeded successfully.');
   } catch (error) {
     console.error('Error seeding burritos:', error);
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
@@ -46,6 +62,7 @@ async function main() {
   console.log(`Start seeding ...`)
   console.time(`full seed`)
 
+  await seedUser();
   await seedBurritos()
 
   console.timeLog(`full seed`)
