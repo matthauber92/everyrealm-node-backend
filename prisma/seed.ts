@@ -1,8 +1,6 @@
 import { prisma } from "../src/db";
-// @ts-ignore
 import {BurritoSize} from "@prisma/client";
-
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
 const seedUser = async () => {
   try {

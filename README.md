@@ -9,10 +9,6 @@ This project is a **Express server with TypeScript** with the following stack:
 ## Contents
 
 - [Getting Started](#getting-started)
-- [Using the GraphQL API](#using-the-graphql-api)
-- [Evolving the app](#evolving-the-app)
-- [Explore and manipulate data](#explore-and-manipulate-data)
-- [Access control](#access-control)
 
 ## Getting started
 

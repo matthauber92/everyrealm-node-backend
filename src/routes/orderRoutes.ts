@@ -35,6 +35,7 @@ router.get('/orders', getAllOrders);
  *         description: Order not found
  */
 router.get('/orders/:id', getOrderById);
+
 /**
  * @swagger
  * /api/orders:
