@@ -1,8 +1,19 @@
 import express from 'express';
-import { getAllBurritos } from '../controllers/burritoController';
+import {getAllBurritos} from '../controllers/burritoController';
 
 const router = express.Router();
 
-router.get('/burritos', getAllBurritos);
+
+/**
+ * @swagger
+ * /api/burrito:
+ *   get:
+ *     summary: Retrieve a list of Burritos
+ *     description: Retrieve a list of Burritos.
+ *     responses:
+ *       200:
+ *         description: Successful response with the list of Burritos
+ */
+router.get('/burrito', getAllBurritos);
 
 export default router;
