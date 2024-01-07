@@ -8,9 +8,10 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
+  id       String  @id @default(uuid())
   username String
   password String
+  orders   Order[]
 }
 
 model Burrito {
@@ -22,8 +23,11 @@ model Burrito {
 }
 
 model Order {
-  id         String      @id @default(uuid())
-  totalCost  Float
+  id        String @id @default(uuid())
+  totalCost Float
+  user      User   @relation(fields: [userId], references: [id])
+  userId    String
+
   orderItems OrderItem[]
 }
 
