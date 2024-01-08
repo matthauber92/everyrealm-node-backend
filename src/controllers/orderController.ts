@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from "../db";
+import {Prisma} from "@prisma/client";
 
 const getAllOrders = async (req: Request, res: Response) => {
   try {
@@ -33,12 +34,15 @@ const getOrderById = async (req: Request, res: Response) => {
 const createOrder = async (req: Request, res: Response) => {
   const { orderItems, totalCost } = req.body;
 
+  const order: Prisma.OrderCreateInput = {
+    orderItems,
+    totalCost
+  };
+  console.log(order, "ORDER")
+
   try {
     const newOrder = await prisma.order.create({
-      data: {
-        orderItems,
-        totalCost,
-      },
+      data: order,
     });
 
     res.status(201).json(newOrder);

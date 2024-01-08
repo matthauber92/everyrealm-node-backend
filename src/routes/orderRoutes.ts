@@ -47,7 +47,18 @@ router.get('/orders/:id', getOrderById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/OrderInput'
+ *             type: object
+ *             properties:
+ *               totalCost:
+ *                 type: number
+ *                 description: The total cost of the order.
+ *               orderItems:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/OrderCreateInput'
+ *             required:
+ *               - totalCost
+ *               - orderItems
  *     responses:
  *       201:
  *         description: Successful response with the created Order

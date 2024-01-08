@@ -10,6 +10,8 @@ const router = express.Router();
  *   get:
  *     summary: Retrieve a list of Burritos
  *     description: Retrieve a list of Burritos.
+ *     security:
+ *        - ApiKeyAuth: []
  *     responses:
  *       200:
  *         description: Successful response with the list of Burritos

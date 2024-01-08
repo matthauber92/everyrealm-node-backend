@@ -1,9 +1,9 @@
 import burritoRoutes from "./routes/burritoRoutes";
 import orderRoutes from "./routes/orderRoutes";
-import authRoutes from "./routes/authRoutes";
+import {Request, Response, NextFunction} from "express";
 
+const API_KEY = "every-realm";
 const express = require('express');
-const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -16,18 +16,7 @@ const app = express();
 // Integrate Swagger UI
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use(cookieParser());
-app.use(session({
-  secret: 'every-realm-secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: false,
-    maxAge: 1000 * 60 * 60 * 24,
-    httpOnly: true,
-    sameSite: false,
-  }
-}));
+app.use(cookieParser("cookie-password"));
 
 // add CORS
 app.use(
@@ -42,8 +31,21 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// check if user is authenticated to make api calls
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const apiKey = req.headers['x-api-key'];
+
+  if(!apiKey) {
+    res.status(401).send("Not Authenticated");
+  }
+  if(apiKey === API_KEY) {
+    next();
+  } else {
+    res.status(401).send("Not Authenticated");
+  }
+});
+
 // Use the burrito routes
-app.use('/api', authRoutes);
 app.use('/api', burritoRoutes);
 app.use('/api', orderRoutes);
 

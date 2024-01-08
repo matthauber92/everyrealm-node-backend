@@ -1,12 +1,28 @@
+import {Prisma} from "@prisma/client";
+
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const options = {
-  definition: {
-    swagger: "2.0",
+  swaggerDefinition: {
+    openapi: '3.0.0',
     info: {
-      title: "EveryRealm API overview",
-      version: "v2"
+      title: 'Every Realm Api',
+      version: '1.0.0',
+      description: 'Your API description',
     },
+    basePath: '/',
+    components: {
+      securitySchemes: {
+        ApiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'X-API-KEY',
+        },
+      },
+    },
+    security: [
+      { ApiKeyAuth: [] },
+    ],
   },
   apis: ['./src/routes/*.ts'],
 };
