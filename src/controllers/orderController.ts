@@ -34,14 +34,19 @@ const getOrderById = async (req: Request, res: Response) => {
 const createOrder = async (req: Request, res: Response) => {
   const { orderItems, totalCost } = req.body;
 
-  const order: Prisma.OrderCreateInput = {
-    orderItems,
-    totalCost
-  };
-
   try {
     const newOrder = await prisma.order.create({
-      data: order,
+      data: {
+        orderItems: {
+          create: orderItems.map((orderItem: any) => ({
+            quantity: orderItem.quantity,
+            burrito: {
+              connect: { id: orderItem.burrito.id }, // Replace with the actual unique identifier
+            },
+          })),
+        },
+        totalCost,
+      },
     });
 
     res.status(201).json(newOrder);
@@ -50,6 +55,7 @@ const createOrder = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 export {
   getAllOrders,
