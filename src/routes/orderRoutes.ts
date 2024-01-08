@@ -1,5 +1,6 @@
 import express from 'express';
 import {getAllOrders, getOrderById, createOrder} from '../controllers/orderController';
+import {authenticate} from "../middleware/auth";
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const router = express.Router();
  *       200:
  *         description: Successful response with the list of Orders
  */
-router.get('/orders', getAllOrders);
+router.get('/orders', authenticate, getAllOrders);
 
 /**
  * @swagger
@@ -34,7 +35,7 @@ router.get('/orders', getAllOrders);
  *       404:
  *         description: Order not found
  */
-router.get('/orders/:id', getOrderById);
+router.get('/orders/:id', authenticate, getOrderById);
 
 /**
  * @swagger

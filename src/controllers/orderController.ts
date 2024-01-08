@@ -38,7 +38,6 @@ const createOrder = async (req: Request, res: Response) => {
     orderItems,
     totalCost
   };
-  console.log(order, "ORDER")
 
   try {
     const newOrder = await prisma.order.create({
