@@ -6,10 +6,6 @@ This project is a **Express server with TypeScript** with the following stack:
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**PostgreSQL**](https://www.postgresql.org): SQL database
 
-## Contents
-
-- [Getting Started](#getting-started)
-
 ## Getting started
 
 ### 1. Install dependencies
