@@ -45,3 +45,13 @@ npm run dev
 ```
 
 Navigate to [http://localhost:8000/docs](http://localhost:8000/docs) in your browser to explore the API of your Express instance.
+
+### 5. Access the Postgres Database
+
+Navigate to [http://localhost:8080](http://localhost:8080) to explore the database
+
+- System: PostgreSQL
+- Server: Postgres
+- Username: postgres
+- Password: password
+- Database: everyrealm
