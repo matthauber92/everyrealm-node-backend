@@ -46,6 +46,10 @@ npm run dev
 
 Navigate to [http://localhost:8000/docs](http://localhost:8000/docs) in your browser to explore the API of your Express instance.
 
+Authorize swagger with the following credential to test authenticated routes:
+
+Credential: every-realm
+
 ### 5. Access the Postgres Database
 
 Navigate to [http://localhost:8080](http://localhost:8080) to explore the database
