@@ -56,7 +56,7 @@ router.get('/orders/:id', authenticate, getOrderById);
  *               orderItems:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/OrderCreateInput'
+ *                   $ref: '#/components/schemas/OrderItemInput'
  *             required:
  *               - totalCost
  *               - orderItems
@@ -65,6 +65,28 @@ router.get('/orders/:id', authenticate, getOrderById);
  *         description: Successful response with the created Order
  *       400:
  *         description: Bad request (e.g., invalid input)
+ * components:
+ *   schemas:
+ *     OrderItemInput:
+ *       type: object
+ *       properties:
+ *         quantity:
+ *           type: integer
+ *           description: The quantity of the item in the order.
+ *         options:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Array of options for the item.
+ *         burrito:
+ *           $ref: '#/components/schemas/BurritoInput'
+ *
+ *     BurritoInput:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The ID of the burrito.
  */
 router.post('/orders', createOrder);
 
