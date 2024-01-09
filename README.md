@@ -36,3 +36,12 @@ Run the following command to initialize your database.
 npx prisma migrate dev
 ```
 
+### 4. Start the Express server
+
+Launch your Express server with this command:
+
+```
+npm run dev
+```
+
+Navigate to [http://localhost:8000/docs](http://localhost:8000/docs) in your browser to explore the API of your Express instance.
