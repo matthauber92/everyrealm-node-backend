@@ -1,5 +1,3 @@
-import {Prisma} from "@prisma/client";
-
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const options = {
